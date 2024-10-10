@@ -26,7 +26,6 @@ public class Infix2Postfix
             result.append(c);
          }
 
-
       }
 
 

@@ -7,6 +7,7 @@ public class MyNode <T>
    private T data;
    private MyNode<T> next;
 
+
    public MyNode(T dataValue)
    {
       data = dataValue;

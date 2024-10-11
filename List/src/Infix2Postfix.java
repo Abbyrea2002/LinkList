@@ -17,17 +17,10 @@ public class Infix2Postfix
          return -1;
    }
 
-   public static class Result {
-      String postfix;
-      Stack<Character> stack;
 
-      public Result(String postfix, Stack<Character> stack) {
-         this.postfix = postfix;
-         this.stack = stack;
-      }
-   }
 
-   public static Result infix2Postfix(String s){
+
+   public static StringBuilder infix2Postfix(String s){
       StringBuilder result = new StringBuilder();
       Stack<Character> stack = new Stack<>();
 
@@ -62,7 +55,7 @@ public class Infix2Postfix
          result.append(stack.pop());
       }
 
-      return new Result(result.toString());
+      return result;
    }
 
    public static int evaluatePostfix(String exp){

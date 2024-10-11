@@ -62,7 +62,7 @@ public class Infix2Postfix
          result.append(stack.pop());
       }
 
-      return new Result(result.toString(), stack);
+      return new Result(result.toString());
    }
 
    public static int evaluatePostfix(String exp){
@@ -99,7 +99,7 @@ public class Infix2Postfix
       System.out.println("Enter an infix expression (no spaces) >");
       String infix = input.nextLine();
       System.out.println("Postfix is: " + infix2Postfix(infix));
-      System.out.println("");
+      System.out.println("Result is " + evaluatePostfix(infix2Postfix(infix).toString()));
 
       }
    }//class

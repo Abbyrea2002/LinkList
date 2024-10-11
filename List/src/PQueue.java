@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class PQueue <T extends Comparable<T>> implements PQueueInterface<T> {
@@ -71,7 +72,14 @@ public class PQueue <T extends Comparable<T>> implements PQueueInterface<T> {
         Integer[] randomValues = new Integer[10];
 
         for(int i = 0; i < randomValues.length; i++){
+             randomValues[i] = random.nextInt(1000);
+             PQueue.enqueue(randomValues[i]);
+        }
 
+        System.out.println("Random array is " + Arrays.toString(randomValues));
+
+        while(!PQueue.isEmpty()){
+            System.out.println("Removing value " + PQueue.dequeue());
         }
     }
 }

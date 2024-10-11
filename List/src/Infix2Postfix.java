@@ -17,7 +17,17 @@ public class Infix2Postfix
          return -1;
    }
 
-   public infix2Postfix(String s){
+   public static class Result {
+      String postfix;
+      Stack<Character> stack;
+
+      public Result(String postfix, Stack<Character> stack) {
+         this.postfix = postfix;
+         this.stack = stack;
+      }
+   }
+
+   public static Result infix2Postfix(String s){
       StringBuilder result = new StringBuilder();
       Stack<Character> stack = new Stack<>();
 
@@ -25,18 +35,15 @@ public class Infix2Postfix
       for(int i = 0; i < s.length(); i++){
          char c = s.charAt(i);
 
-         if(c >= 0 && c <= 9){
+         if(Character.isDigit(c)){
             result.append(c);
          }
          else if(c == '^' || c == '*' || c == '/'
                  ||c == '+' || c == '-' ){
-            if(!stack.isEmpty() && (prec(s.charAt(i)) < prec(stack.peek())) || c == '('){
-               stack.push(c);
-
-            }else {
+            while (!stack.isEmpty() && prec(c) <= prec(stack.peek())) {
                result.append(stack.pop());
-               stack.push(c);
             }
+            stack.push(c);
          }
          else if(c == '('){
             stack.push(c);
@@ -45,7 +52,7 @@ public class Infix2Postfix
             while(!stack.isEmpty() && stack.peek() != '('){
                result.append(stack.pop());
             }
-
+             stack.pop();
          }
 
 
@@ -55,7 +62,7 @@ public class Infix2Postfix
          result.append(stack.pop());
       }
 
-   return result.toString();
+      return new Result(result.toString(), stack);
    }
 
    public static int evaluatePostfix(String exp){
@@ -91,7 +98,7 @@ public class Infix2Postfix
 
       System.out.println("Enter an infix expression (no spaces) >");
       String infix = input.nextLine();
-      System.out.println("Postfix is: " + infixToPostfix(infix));
+      System.out.println("Postfix is: " + infix2Postfix(infix));
       System.out.println("");
 
       }

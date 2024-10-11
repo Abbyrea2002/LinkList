@@ -25,6 +25,10 @@ public class Infix2Postfix
          if(c >= 0 && c <= 9){
             result.append(c);
          }
+         else if(c == '^' || c == '*' || c == '/' ||c == '+' || c == '-' ){
+
+         }
+
 
       }
 
